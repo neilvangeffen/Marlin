@@ -1933,9 +1933,7 @@ void MarlinSettings::postprocess() {
 
       //
       // TMC StallGuard threshold.
-      // X and X2 use the same value
-      // Y and Y2 use the same value
-      // Z, Z2, Z3 and Z4 use the same value
+      // X, Y, Z, X2, Y2, Z2, Z3, and Z4 all use separate values
       //
       {
         tmc_sgt_t tmc_sgt;
@@ -1943,46 +1941,14 @@ void MarlinSettings::postprocess() {
         EEPROM_READ(tmc_sgt);
         #if USE_SENSORLESS
           if (!validating) {
-            #ifdef X_STALL_SENSITIVITY
-              #if AXIS_HAS_STALLGUARD(X)
-                stepperX.homing_threshold(tmc_sgt.X);
-              #endif
-              #if AXIS_HAS_STALLGUARD(X2) && !X2_SENSORLESS
-                stepperX2.homing_threshold(tmc_sgt.X);
-              #elif AXIS_HAS_STALLGUARD(X2)
-                stepperX2.homing_threshold(tmc_sgt.X2);
-              #endif
-            #endif
-            #ifdef Y_STALL_SENSITIVITY
-              #if AXIS_HAS_STALLGUARD(Y)
-                stepperY.homing_threshold(tmc_sgt.Y);
-              #endif
-              #if AXIS_HAS_STALLGUARD(Y2) && !Y2_SENSORLESS
-                stepperY2.homing_threshold(tmc_sgt.Y);
-              #elif AXIS_HAS_STALLGUARD(Y2)
-                stepperY2.homing_threshold(tmc_sgt.Y2);
-              #endif
-            #endif
-            #ifdef Z_STALL_SENSITIVITY
-              #if AXIS_HAS_STALLGUARD(Z)
-                stepperZ.homing_threshold(tmc_sgt.Z);
-              #endif
-              #if AXIS_HAS_STALLGUARD(Z2) && !Z2_SENSORLESS
-                stepperZ2.homing_threshold(tmc_sgt.Z);
-              #elif AXIS_HAS_STALLGUARD(Z2)
-                stepperZ2.homing_threshold(tmc_sgt.Z2);
-              #endif
-              #if AXIS_HAS_STALLGUARD(Z3) && !Z3_SENSORLESS
-                stepperZ3.homing_threshold(tmc_sgt.Z);
-              #elif AXIS_HAS_STALLGUARD(Z3)
-                stepperZ3.homing_threshold(tmc_sgt.Z3);
-              #endif
-              #if AXIS_HAS_STALLGUARD(Z4) && !Z4_SENSORLESS
-                stepperZ4.homing_threshold(tmc_sgt.Z);
-              #elif AXIS_HAS_STALLGUARD(Z4)
-                stepperZ4.homing_threshold(tmc_sgt.Z4);
-              #endif
-            #endif
+            TERN_(X_SENSORLESS, stepperX.homing_threshold(tmc_sgt.X));
+            TERN_(X2_SENSORLESS, stepperX2.homing_threshold(tmc_sgt.X2));
+            TERN_(Y_SENSORLESS, stepperY.homing_threshold(tmc_sgt.Y));
+            TERN_(Y2_SENSORLESS, stepperY2.homing_threshold(tmc_sgt.Y2));
+            TERN_(Z_SENSORLESS, stepperZ.homing_threshold(tmc_sgt.Z));
+            TERN_(Z2_SENSORLESS, stepperZ2.homing_threshold(tmc_sgt.Z2));
+            TERN_(Z3_SENSORLESS, stepperZ3.homing_threshold(tmc_sgt.Z3));
+            TERN_(Z4_SENSORLESS, stepperZ4.homing_threshold(tmc_sgt.Z4));
           }
         #endif
       }
