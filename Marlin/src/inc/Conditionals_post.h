@@ -429,7 +429,7 @@
   #endif
 #else
   #undef HEATER_0_MINTEMP
-  #undef HEATER_0_MAXTEMP
+  //#undef HEATER_0_MAXTEMP
 #endif
 
 #if TEMP_SENSOR_1 == -5 || TEMP_SENSOR_1 == -3 || TEMP_SENSOR_1 == -2
