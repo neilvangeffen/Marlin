@@ -2437,6 +2437,22 @@ static_assert(hbm[Z_AXIS] >= 0, "HOMING_BUMP_MM.Z must be greater than or equal 
     #endif
   #elif ENDSTOP_NOISE_THRESHOLD
     #error "SENSORLESS_HOMING is incompatible with ENDSTOP_NOISE_THRESHOLD."
+  #elif AXIS_HAS_STALLGUARD(X) && !defined(X_STALL_SENSITIVITY)
+    #error "X_STALL_SENSITIVITY required for sensorless homing on X axis."
+  #elif AXIS_HAS_STALLGUARD(X2) && !defined(X2_STALL_SENSITIVITY)
+    #error "X2_STALL_SENSITIVITY required for sensorless homing on X2 axis."
+  #elif AXIS_HAS_STALLGUARD(Y) && !defined(Y_STALL_SENSITIVITY)
+    #error "Y_STALL_SENSITIVITY required for sensorless homing on Y axis."
+  #elif AXIS_HAS_STALLGUARD(Y2) && !defined(Y2_STALL_SENSITIVITY)
+    #error "Y2_STALL_SENSITIVITY required for sensorless homing on Y2 axis."
+  #elif AXIS_HAS_STALLGUARD(Z) && !defined(Z_STALL_SENSITIVITY)
+    #error "Z_STALL_SENSITIVITY required for sensorless homing on Z axis."
+  #elif AXIS_HAS_STALLGUARD(Z2) && !defined(Z2_STALL_SENSITIVITY)
+     #error "Z2_STALL_SENSITIVITY required for sensorless homing on Z2 axis."
+  #elif AXIS_HAS_STALLGUARD(Z3) && !defined(Z3_STALL_SENSITIVITY)
+     #error "Z3_STALL_SENSITIVITY required for sensorless homing on Z3 axis."
+  #elif AXIS_HAS_STALLGUARD(Z4) && !defined(Z4_STALL_SENSITIVITY)
+     #error "Z4_STALL_SENSITIVITY required for sensorless homing on Z4 axis."
   #elif !(X_SENSORLESS || Y_SENSORLESS || Z_SENSORLESS)
     #error "SENSORLESS_HOMING requires a TMC stepper driver with StallGuard on X, Y, or Z axes."
   #endif
