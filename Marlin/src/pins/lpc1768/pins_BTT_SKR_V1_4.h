@@ -149,8 +149,9 @@
   #define E1_CS_PIN                        P1_01
 #endif
 
-#define TEMP_1_PIN                      P0_23_A0  // A2 (T2) - (69) - TEMP_1_PIN
-#define TEMP_BED_PIN                    P0_25_A2  // A0 (T0) - (67) - TEMP_BED_PIN
+#define TEMP_1_PIN                      P0_24_A1  // TH0
+#define TEMP_2_PIN                      P0_23_A0  // TH1
+#define TEMP_BED_PIN                    P0_25_A2  // TB
 
 //
 // Software SPI pins for TMC2130 stepper drivers
@@ -251,17 +252,16 @@
     #define LCD_PINS_D4                    P1_21
 
   #else
-    #define BTN_ENC                        P0_28  // (58) open-drain
-    #define LCD_PINS_RS                    P1_19
+    #define BTN_UP                         P1_23 // (LCD_D7) 1.23
+    #define BTN_DWN                        P1_20 // (LCD_D4)
+    #define BTN_LFT                        P1_21 // (LCD_D5) 1.21
+    #define BTN_RT                         P1_18 // (LCD_EN)
+    #define BTN_ENC                        P1_19 // (LCD_RS) 1.19
 
-    #define BTN_EN1                        P3_26  // (31) J3-2 & AUX-4
-    #define BTN_EN2                        P3_25  // (33) J3-4 & AUX-4
-
-    #define LCD_PINS_ENABLE                P1_18
-    #define LCD_PINS_D4                    P1_20
-
-    #define LCD_SDSS                       P0_16  // (16) J3-7 & AUX-4
-
+    #define SR_STROBE_PIN                  P0_28 // BTN_ENC
+    #define SR_DATA_PIN                    P3_25 // BTN_EN2
+    #define SR_CLK_PIN                     P3_26 // BTN_EN1
+    
     #if SD_CONNECTION_IS(LCD)
       #define SD_DETECT_PIN                P1_31  // (49) (NOT 5V tolerant)
     #endif
@@ -304,9 +304,9 @@
       #endif
 
       #if ENABLED(ULTIPANEL)
-        #define LCD_PINS_D5                P1_21
+        #define LCD_PINS_D5                P1_22
         #define LCD_PINS_D6                P1_22
-        #define LCD_PINS_D7                P1_23
+        #define LCD_PINS_D7                P1_22
       #endif
 
     #endif // !FYSETC_MINI_12864
