@@ -149,8 +149,8 @@
   #define E1_CS_PIN                        P1_01
 #endif
 
-#define TEMP_1_PIN                      P0_24_A1  // TH0
-#define TEMP_2_PIN                      P0_23_A0  // TH1
+#define TEMP_0_PIN                      P0_24_A1  // TH0
+#define TEMP_1_PIN                      P0_23_A0  // TH1
 #define TEMP_BED_PIN                    P0_25_A2  // TB
 
 //
